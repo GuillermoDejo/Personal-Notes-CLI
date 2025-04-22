@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 FILENAME = "notes.txt"
 
@@ -13,11 +14,14 @@ def write_notes(notes):
         f.write("\n".join(notes))
 
 def add_note():
-    note = input("Write your note: ")
+    note = input("Escribe tu nota: ")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+    full_note = f"[{timestamp}] {note}"
+    
     notes = read_notes()
-    notes.append(note)
+    notes.append(full_note)
     write_notes(notes)
-    print("Note added!")
+    print("¡Nota guardada con fecha y hora!")
 
 def view_notes():
     notes = read_notes()
@@ -41,13 +45,28 @@ def delete_note():
     except ValueError:
         print("Please enter a valid number.")
 
+def search():
+    query = input("Enter a word to search: ").lower()
+    notes = read_notes()
+    found = False
+
+    for idx, note in enumerate(notes, 1):
+        if query in note.lower():
+            print(f"{idx}. {note}")
+            found = True
+
+    if not found:
+        print("No results found.")
+        
+
 def menu():
     while True:
         print("\n--- Personal Notes App ---")
         print("1. Add Note")
         print("2. View Notes")
         print("3. Delete Note")
-        print("4. Exit")
+        print("4. Search Notes")
+        print("5. Exit")
         choice = input("Choose an option: ")
         
         if choice == "1":
@@ -57,10 +76,13 @@ def menu():
         elif choice == "3":
             delete_note()
         elif choice == "4":
+            search()
+        elif choice == "5":
             print("Goodbye!")
             break
         else:
             print("Invalid choice. Try again.")
+
 
 if __name__ == "__main__":
     menu()
