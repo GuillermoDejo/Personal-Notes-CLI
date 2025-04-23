@@ -8,13 +8,7 @@ Una aplicación de consola simple para guardar, ver y eliminar notas personales 
 - Visualizar todas las notas guardadas
 - Eliminar una nota por su número
 - Guardado persistente en un archivo `.txt`
-
-## 🧠 Tecnologías usadas
-
-- Python 3
-- Manejo de archivos (`open()`)
-- Módulo `os` para verificar existencia del archivo
-- Bucles, funciones, listas y manejo de errores
+- Busca notas con palabras clave
 
 ## ▶️ Cómo usar
 
